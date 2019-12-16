@@ -1,0 +1,6 @@
+version: '2'
+services:
+  app_demo-redis:
+    image: redis:5.0.6
+    ports:
+      - '8081:8081'
