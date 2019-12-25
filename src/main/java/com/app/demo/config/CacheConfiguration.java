@@ -30,7 +30,8 @@ public class CacheConfiguration {
     public javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration(JHipsterProperties jHipsterProperties) {
         MutableConfiguration<Object, Object> jcacheConfig = new MutableConfiguration<>();
         Config config = new Config();
-        config.useSingleServer().setAddress(jHipsterProperties.getCache().getRedis().getServer());
+        config.useSingleServer().setAddress("redis://172.16.29.128:8081");
+//        config.useSingleServer().setAddress(jHipsterProperties.getCache().getRedis().getServer());
         jcacheConfig.setStatisticsEnabled(true);
         jcacheConfig.setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(new Duration(TimeUnit.SECONDS, jHipsterProperties.getCache().getRedis().getExpiration())));
         return RedissonConfiguration.fromInstance(Redisson.create(config), jcacheConfig);
